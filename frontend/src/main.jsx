@@ -34,8 +34,11 @@
 import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
 import { ChakraProvider } from '@chakra-ui/react';
-import './index.css';
+// import './index.css'; Since we're not using this file we can comment it out.
 import App from './App.jsx';
+// I added the following imports:
+import React from 'react';
+import ReactDOM from 'react-dom/client';
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
