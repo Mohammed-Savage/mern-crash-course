@@ -1,6 +1,7 @@
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 import path from 'path';
+import { ChakraProvider } from '@chakra-ui/react';
 
 // https://vite.dev/config/
 // This was the original code vite loaded with:
