@@ -4,6 +4,7 @@
 
 import express from 'express';
 import dotenv from 'dotenv';
+import path from 'path'; // This is a built-in Node.js module that provides utilities for working with file and directory paths.
 import { connectDB } from './config/db.js';
 import productRoutes from './routes/product.route.js';
 
@@ -15,6 +16,8 @@ dotenv.config();
 
 const app = express();
 const PORT = process.env.PORT || 5000;
+
+const __dirname = path.resolve(); // This is a built-in Node.js method that returns the directory name of the current module. This is used to resolve the path to our static files.
 
 app.use(express.json()); // This is middleware that allows us to parse JSON requests. This allows us to accept JSON data in our request.body. Middleware is just a function that runs before we send a response back to the client.
 
