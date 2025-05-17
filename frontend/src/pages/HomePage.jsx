@@ -1,7 +1,17 @@
-import { Container, Text, VStack } from "@chakra-ui/react";
+import { useProductStore } from "../store/product"
+import { Container, SimpleGrid, Text, VStack } from "@chakra-ui/react";
+import { useEffect } from "react";
 import { Link } from "react-router-dom";
+import ProductCard from "../components/ProductCard";
 
 const HomePage = () => {
+    const { fetchProducts, products } = useProductStore();
+
+    useEffect(() => {
+        fetchProducts();
+    }, [fetchProducts]);
+    console.log("products", products);
+
     return (
         <Container maxW={"container.xl"} py={12} centerContent>
             {/* I added centerContent to the container styling above. If it looks bad, remove it. */}
@@ -24,6 +34,29 @@ const HomePage = () => {
                 >
                     Current Inventory 🎁
                 </Text>
+
+                <SimpleGrid
+                    columns={{ base: 1, md: 2, lg: 3 }}
+                    spacing={10}
+                    width={"full"}
+                    // padding={4}
+                    // borderWidth={1}
+                    // borderRadius={"lg"}
+                    // boxShadow={"lg"}
+                    // bg={"white"}
+                    // _hover={{ boxShadow: "xl" }}
+                    // transition={"all 0.2s"}
+                >
+                    {products.map((product) => (
+                        <ProductCard key={product._id} product={product} />
+                            // key={product._id}
+                            // id={product._id}
+                            // name={product.name}
+                            // description={product.description}
+                            // price={product.price}
+                            // image={product.image}
+                    ))}
+                </SimpleGrid>
                 <Text fontSize={"xl"} textAlign={"center"} fontWeight={"bold"} color={"gray.500"}>
                     No products in the inventory yet.😟{" "}
                     <Link to={"/create"}>
