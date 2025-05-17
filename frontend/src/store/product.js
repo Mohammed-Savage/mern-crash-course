@@ -26,22 +26,47 @@ export const useProductStore = create((set) => ({
         return { success: true, message: "Product created successfully" };
     },
     fetchProducts: async () => {
-        const res = await fetch("/api/products");
-        const data = await res.json();
-        set({ products: data.data });
+        try {
+            const res = await fetch("/api/products");
+            if (!res.ok) {
+                const errorData = await res.json();
+                console.error("Fetch error:", errorData.message);
+                return;
+            }
+
+            const data = await res.json();
+            set({ products: data.data });
+        } catch (error) {
+            console.error("Network error in fetchProducts:", error.message);
+        }
     },
     deleteProduct: async (pid) => {
-        const res = await fetch(`/api/products/${pid}`, {
-            method: "DELETE",
-        });
-        const data = await res.json();
-        if (!data.success) return { success: false, message: data.message };
-        
-        // Here we're updating the state directly after the delete request is successful. This is a good practice to keep the UI in sync with the server state. We complete this by removing the product with the matching pid from the products array. The function uses the filter method to create a new array that excludes the product with the matching _id. The set function is then called to update the products state with this new array.
-        set((state) => ({
-            products: state.products.filter((product) => product._id !== pid)
-        }));
-        return { success: true, message: data.message };
+        try {
+            const res = await fetch(`/api/products/${pid}`, {
+                method: "DELETE",
+            });
+
+            if (!res.ok) {
+                const errorData = await res.json();
+                console.error("Delete error:", errorData.message);
+                return { success: false, message: errorData.message };
+            }
+
+            const data = await res.json();
+
+            if (!data.success) {
+                return { success: false, message: data.message };
+            }
+
+            set((state) => ({
+                products: state.products.filter((product) => product._id !== pid),
+            }));
+
+            return { success: true, message: data.message };
+        } catch (err) {
+            console.error("Network error in deleteProduct:", err.message);
+            return { success: false, message: "Something went wrong. Please try again." };
+        }
     },
     // deleteProduct: async (id) => {
     //     const res = await fetch(`/api/products/${id}`, {
