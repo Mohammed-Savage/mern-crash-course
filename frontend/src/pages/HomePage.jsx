@@ -1,4 +1,5 @@
 import { Container, Text, VStack } from "@chakra-ui/react";
+import { Link } from "react-router-dom";
 
 const HomePage = () => {
     return (
@@ -12,16 +13,24 @@ const HomePage = () => {
                     bgClip={"text"}
                     textAlign={"center"}
                     // textTransform={"uppercase"}
-                    // letterSpacing={"wide"}
+                    letterSpacing={"wide"}
                     // lineHeight={"shorter"}
                     // fontFamily={"sans-serif"}
-                    // textShadow={"2px 2px 4px rgba(0, 0, 0, 0.3)"}
-                    // textDecoration={"underline"}
-                    // textDecorationColor={"blue.500"}
-                    // textDecorationThickness={"2px"}
-                    // textDecorationStyle={"wavy"}
-                >   
+                    textShadow={"2px 2px 4px rgba(0, 0, 0, 0.3)"}
+                // textDecoration={"underline"}
+                // textDecorationColor={"blue.500"}
+                // textDecorationThickness={"2px"}
+                // textDecorationStyle={"wavy"}
+                >
                     Current Inventory 🎁
+                </Text>
+                <Text fontSize={"xl"} textAlign={"center"} fontWeight={"bold"} color={"gray.500"}>
+                    No products in the inventory yet.😟{" "}
+                    <Link to={"/create"}>
+                        <Text as={"span"} color={"blue.500"} _hover={{ textDecoration: "underline" }}>
+                            Add a product
+                        </Text>
+                    </Link>
                 </Text>
             </VStack>
             {/* This is all sample, boiler plate text that I can change up to reflect the apps messages. */}
