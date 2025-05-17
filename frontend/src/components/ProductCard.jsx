@@ -26,6 +26,9 @@ const ProductCard = ({ product }) => {
                 {/* <Heading as='h3' size={"md"} mb={2} fontWeight={"thin"}>
                 {product.description}
             </Heading> */}
+                <Text fontSize={"md"} color={textColor} mb={4}>
+                    {product.description}
+                </Text>
                 <Text fontWeight={"bold"} fontSize={"xl"} color={textColor} mb={4}>
                     ${product.price}
                 </Text>
