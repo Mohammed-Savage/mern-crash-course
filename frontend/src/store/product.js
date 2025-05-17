@@ -30,6 +30,29 @@ export const useProductStore = create((set) => ({
         const data = await res.json();
         set({ products: data.data });
     },
+    deleteProduct: async (pid) => {
+        const res = await fetch(`/api/products/${pid}`, {
+            method: "DELETE",
+        });
+        const data = await res.json();
+        if (!data.success) return { success: false, message: data.message };
+        
+        // Here we're updating the state directly after the delete request is successful. This is a good practice to keep the UI in sync with the server state. We complete this by removing the product with the matching pid from the products array. The function uses the filter method to create a new array that excludes the product with the matching _id. The set function is then called to update the products state with this new array.
+        set((state) => ({
+            products: state.products.filter((product) => product._id !== pid)
+        }));
+        return { success: true, message: data.message };
+    },
+    // deleteProduct: async (id) => {
+    //     const res = await fetch(`/api/products/${id}`, {
+    //         method: "DELETE",
+    //     });
+    //     const data = await res.json();
+    //     set((state) => ({
+    //         products: state.products.filter((product) => product._id !== id),
+    //     }));
+    //     return { success: true, message: "Product deleted successfully" };
+    // },
 }));
 
 // This is boilerplate local state hook.
