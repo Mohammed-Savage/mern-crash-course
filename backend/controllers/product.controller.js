@@ -16,7 +16,7 @@ export const getProducts = async (req, res) => {
 export const createProduct = async (req, res) => {
     const product = req.body; // This is the product information the user will provide.
 
-    if(!product.name || !product.price || !product.image) {
+    if(!product.name || !product.description || !product.price || !product.image) {
         return res.status(400).json({ success:false, message: "Please provide all fields." });
         // The literal English translation of the if statement logic is "If product.name/price/image is false". This will then provide them with a 400 status code and our custom error message.
     }
