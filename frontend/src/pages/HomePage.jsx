@@ -39,32 +39,35 @@ const HomePage = () => {
                     columns={{ base: 1, md: 2, lg: 3 }}
                     spacing={10}
                     width={"full"}
-                    // padding={4}
-                    // borderWidth={1}
-                    // borderRadius={"lg"}
-                    // boxShadow={"lg"}
-                    // bg={"white"}
-                    // _hover={{ boxShadow: "xl" }}
-                    // transition={"all 0.2s"}
+                // padding={4}
+                // borderWidth={1}
+                // borderRadius={"lg"}
+                // boxShadow={"lg"}
+                // bg={"white"}
+                // _hover={{ boxShadow: "xl" }}
+                // transition={"all 0.2s"}
                 >
                     {products.map((product) => (
                         <ProductCard key={product._id} product={product} />
-                            // key={product._id}
-                            // id={product._id}
-                            // name={product.name}
-                            // description={product.description}
-                            // price={product.price}
-                            // image={product.image}
+                        // key={product._id}
+                        // id={product._id}
+                        // name={product.name}
+                        // description={product.description}
+                        // price={product.price}
+                        // image={product.image}
                     ))}
                 </SimpleGrid>
-                <Text fontSize={"xl"} textAlign={"center"} fontWeight={"bold"} color={"gray.500"}>
-                    No products in the inventory yet.😟{" "}
-                    <Link to={"/create"}>
-                        <Text as={"span"} color={"blue.500"} _hover={{ textDecoration: "underline" }}>
-                            Add a product
-                        </Text>
-                    </Link>
-                </Text>
+
+                {products.length === 0 && (
+                    <Text fontSize={"xl"} textAlign={"center"} fontWeight={"bold"} color={"gray.500"}>
+                        No products in inventory yet.😵{" "}
+                        <Link to={"/create"}>
+                            <Text as={"span"} color={"blue.500"} _hover={{ textDecoration: "underline" }}>
+                                Add a product
+                            </Text>
+                        </Link>
+                    </Text>
+                )}
             </VStack>
             {/* This is all sample, boiler plate text that I can change up to reflect the apps messages. */}
             {/* <h1>Welcome to the Home Page</h1>

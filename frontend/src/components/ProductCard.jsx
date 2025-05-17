@@ -36,7 +36,9 @@ const ProductCard = ({ product }) => {
                     <Tooltip label='Edit Product' aria-label='Edit Product' fontSize='md'>
                     <IconButton icon={<FaEdit />} colorScheme='blue' aria-label='Edit Product' />
                     </Tooltip>
+                    <Tooltip label='Delete Product' aria-label='Delete Product' fontSize='md'>
                     <IconButton icon={<FcDeleteRow />} colorScheme='red' aria-label='Delete Product' />
+                    </Tooltip>
                 </HStack>
             </Box>
         </Box>
