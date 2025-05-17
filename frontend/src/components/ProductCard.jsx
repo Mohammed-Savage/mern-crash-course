@@ -1,7 +1,7 @@
 import { FcDeleteRow } from "react-icons/fc";
 import { FaEdit } from "react-icons/fa";
 import { useState } from "react";
-import { Box, Heading, Image, Text, useColorModeValue, HStack, IconButton } from "@chakra-ui/react";
+import { Box, Heading, Image, Text, useColorModeValue, HStack, IconButton, Tooltip } from "@chakra-ui/react";
 
 const ProductCard = ({ product }) => {
 
@@ -33,7 +33,9 @@ const ProductCard = ({ product }) => {
                     ${product.price}
                 </Text>
                 <HStack spacing={2} justifyContent={"space-between"}>
+                    <Tooltip label='Edit Product' aria-label='Edit Product' fontSize='md'>
                     <IconButton icon={<FaEdit />} colorScheme='blue' aria-label='Edit Product' />
+                    </Tooltip>
                     <IconButton icon={<FcDeleteRow />} colorScheme='red' aria-label='Delete Product' />
                 </HStack>
             </Box>
