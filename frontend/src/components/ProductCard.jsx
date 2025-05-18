@@ -1,7 +1,7 @@
 import { FcDeleteRow } from "react-icons/fc";
 import { FaEdit } from "react-icons/fa";
 import { useState } from "react";
-import { Box, Heading, Image, Text, useColorModeValue, HStack, IconButton, Tooltip, useToast } from "@chakra-ui/react";
+import { Box, Heading, Image, Text, useColorModeValue, HStack, IconButton, Tooltip, useToast, useDisclosure, Modal, ModalOverlay, ModalContent, ModalHeader, ModalCloseButton } from "@chakra-ui/react";
 import { useProductStore } from "../store/product";
 
 const ProductCard = ({ product }) => {
@@ -11,6 +11,7 @@ const ProductCard = ({ product }) => {
 
     const { deleteProduct } = useProductStore();
     const toast = useToast();
+    const { isOpen, onOpen, onClose } = useDisclosure();
 
     const handleDeleteProduct = async (pid) => {
         const { success, message } = await deleteProduct(pid);
@@ -68,6 +69,15 @@ const ProductCard = ({ product }) => {
                     </Tooltip>
                 </HStack>
             </Box>
+
+            <Modal isOpen={isOpen} onClose={onClose}>
+                <ModalOverlay />
+                <ModalContent>
+                    <ModalHeader>Update Product</ModalHeader>
+                    <ModalCloseButton />
+                </ModalContent>
+            </Modal>
+
         </Box>
     );
 };
