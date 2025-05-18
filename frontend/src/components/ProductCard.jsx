@@ -1,7 +1,7 @@
 import { FcDeleteRow } from "react-icons/fc";
 import { FaEdit } from "react-icons/fa";
 import { useState } from "react";
-import { Box, Heading, Image, Text, useColorModeValue, HStack, IconButton, Tooltip, useToast, useDisclosure, Modal, ModalOverlay, ModalContent, ModalHeader, ModalCloseButton, ModalBody, VStack, Input } from "@chakra-ui/react";
+import { Box, Heading, Image, Text, useColorModeValue, HStack, IconButton, Tooltip, useToast, useDisclosure, Modal, ModalOverlay, ModalContent, ModalHeader, ModalCloseButton, ModalBody, VStack, Input, ModalFooter, Button } from "@chakra-ui/react";
 import { useProductStore } from "../store/product";
 
 const ProductCard = ({ product }) => {
@@ -96,6 +96,13 @@ const ProductCard = ({ product }) => {
                             />
                         </VStack>
                     </ModalBody>
+
+                    <ModalFooter>
+                        <Button colorScheme='blue' mr={3} onClick={() => handleUpdateProduct(product._id, updatedProduct)}>
+                            Update
+                        </Button>
+                    </ModalFooter>
+
                 </ModalContent>
             </Modal>
 
