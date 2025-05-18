@@ -1,7 +1,7 @@
 import { FcDeleteRow } from "react-icons/fc";
 import { FaEdit } from "react-icons/fa";
 import { useState } from "react";
-import { Box, Heading, Image, Text, useColorModeValue, HStack, IconButton, Tooltip, useToast, useDisclosure, Modal, ModalOverlay, ModalContent, ModalHeader, ModalCloseButton } from "@chakra-ui/react";
+import { Box, Heading, Image, Text, useColorModeValue, HStack, IconButton, Tooltip, useToast, useDisclosure, Modal, ModalOverlay, ModalContent, ModalHeader, ModalCloseButton, ModalBody, VStack, Input } from "@chakra-ui/react";
 import { useProductStore } from "../store/product";
 
 const ProductCard = ({ product }) => {
@@ -62,7 +62,7 @@ const ProductCard = ({ product }) => {
                 </Text>
                 <HStack spacing={2} justifyContent={"space-between"}>
                     <Tooltip label='Edit Product' aria-label='Edit Product' fontSize='md'>
-                        <IconButton icon={<FaEdit />} colorScheme='blue' aria-label='Edit Product' />
+                        <IconButton icon={<FaEdit />} onClick={onOpen} colorScheme='blue' aria-label='Edit Product' />
                     </Tooltip>
                     <Tooltip label='Delete Product' aria-label='Delete Product' fontSize='md'>
                         <IconButton icon={<FcDeleteRow />} onClick={() => handleDeleteProduct(product._id)} colorScheme='red' aria-label='Delete Product' />
@@ -75,6 +75,27 @@ const ProductCard = ({ product }) => {
                 <ModalContent>
                     <ModalHeader>Update Product</ModalHeader>
                     <ModalCloseButton />
+                    <ModalBody>
+                        <VStack spacing={4}>
+                            <Input
+                                placeholder="Product Name"
+                                name="name"
+                            />
+                            <Input
+                                placeholder="Product Description"
+                                name="description"
+                            />
+                            <Input
+                                placeholder="Price"
+                                name="price"
+                                type="number"
+                            />
+                            <Input
+                                placeholder="Image URL"
+                                name="image"
+                            />
+                        </VStack>
+                    </ModalBody>
                 </ModalContent>
             </Modal>
 
