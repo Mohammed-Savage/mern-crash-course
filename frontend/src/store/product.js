@@ -57,7 +57,7 @@ export const useProductStore = create((set) => ({
             if (!data.success) {
                 return { success: false, message: data.message };
             }
-
+            // This is us updating the state to remove the deleted product from the products page in our UI wihtout having to refresh the page.
             set((state) => ({
                 products: state.products.filter((product) => product._id !== pid),
             }));
